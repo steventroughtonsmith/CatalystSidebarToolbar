@@ -7,7 +7,12 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSToolbarDelegate, UITableViewDataSource {
+#if !targetEnvironment(macCatalyst)
+@objc protocol NSToolbarDelegate {
+}
+#endif
+
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, UITableViewDataSource, NSToolbarDelegate {
     
     var window: UIWindow?
     
@@ -79,7 +84,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, NSToolbarDelegate, UITa
         // to restore the scene back to its current state.
     }
     
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
